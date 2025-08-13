@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name_ko": "인삼",
+    "name_en": "Ginseng (Panax ginseng)",
+    "common_name": "Korean ginseng",
+    "synonyms": ["Insam", "Panax ginseng C.A.Mey."],
+    "parts_used": "Root",
+    "indications": "Qi tonifying, fatigue, convalescence, appetite loss",
+    "safety": "Avoid with uncontrolled hypertension. Interacts with warfarin.",
+    "refs": ["Korean Pharmacopoeia", "TM-MC"]
+  }
+]
