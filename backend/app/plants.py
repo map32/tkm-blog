@@ -21,8 +21,8 @@ def list_plants(q: Optional[str] = None, limit: int = 50, offset: int = 0):
         ql = q.lower()
         def hit(p):
             text = " ".join([
-                str(p.get("name_en", "")), str(p.get("name_ko", "")),
-                " ".join(p.get("synonyms", []) or []), str(p.get("indications", "")),
+                str(p.get("name_en", "")), str(p.get("name_ko", "")), str(p.get("name_latin","")),
+                " ".join(p.get("synonyms", []) or []), str(p.get("indications_efficacy_effects", "")),
             ]).lower()
             return ql in text
         items = [p for p in items if hit(p)]

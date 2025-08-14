@@ -6,6 +6,7 @@ services:
       - "8080:8000"
     volumes:
       - ./data:/app/data:ro
+      - ./images:/app/app/static/plants
     environment:
       - JWT_SECRET=change-me-please
       - ADMIN_USER=admin

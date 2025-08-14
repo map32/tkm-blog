@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Tabs from "./components/Tabs.jsx";
 import PlantSearch from "./components/PlantSearch.jsx";
 import PlantDetail from "./components/PlantDetail.jsx";
 import BlogList from "./components/BlogList.jsx";
 import BlogEditor from "./components/BlogEditor.jsx";
+import KtmSection from "./components/KtmSection.jsx";
 
 const api = (path) => (window.location.origin.includes(":8080") ? "http://localhost:8080" : "") + path;
 
 export default function App() {
   const [selected, setSelected] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-
   const [auth, setAuth] = useState({ username: "", password: "" });
+  const [activeTab, setActiveTab] = useState("plants");
 
   const login = async (e) => {
     e.preventDefault();
@@ -26,6 +28,12 @@ export default function App() {
       alert("Login failed");
     }
   };
+
+  const tabs = [
+    { key: "plants", label: "Plant Search" },
+    { key: "blog", label: "Blog Editor" },
+    { key: "ktm", label: "KTM Pages" }
+  ];
 
   return (
     <>
@@ -47,23 +55,36 @@ export default function App() {
         </div>
       </div>
 
-      <div className="container" style={{display:"grid", gridTemplateColumns:"2fr 1fr", gap:"1rem"}}>
-        <div className="grid" style={{alignContent:"start"}}>
-          <div className="card">
-            <PlantSearch onSelect={setSelected} />
+      <div className="container" style={{display:"grid", gap:"1rem"}}>
+        <Tabs tabs={tabs} active={activeTab} onChange={setActiveTab} />
+
+        {activeTab === "plants" && (
+          <div style={{display:"grid", gridTemplateColumns:"2fr 1fr", gap:"1rem"}}>
+            <div className="card">
+              <PlantSearch onSelect={setSelected} />
+            </div>
+            <div className="card">
+              <PlantDetail id={selected?.id} plant={selected} />
+            </div>
           </div>
-          <div className="card">
-            <BlogList token={token} />
+        )}
+
+        {activeTab === "blog" && (
+          <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem"}}>
+            <div className="card">
+              <BlogEditor token={token} />
+            </div>
+            <div className="card">
+              <BlogList />
+            </div>
           </div>
-        </div>
-        <div className="grid" style={{alignContent:"start"}}>
+        )}
+
+        {activeTab === "ktm" && (
           <div className="card">
-            <PlantDetail id={selected?.id} plant={selected} />
+            <KtmSection />
           </div>
-          <div className="card">
-            <BlogEditor token={token} />
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

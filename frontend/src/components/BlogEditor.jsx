@@ -26,7 +26,7 @@ export default function BlogEditor({ token }) {
         <button onClick={post}>Publish</button>
       </div>
       <p style={{opacity:.7, fontSize:".85rem"}}>
-        Tip: You can seed an admin via <code>GET /api/auth/bootstrap</code> (uses ADMIN_USER/ADMIN_PASS envs).
+        Tip: Seed an admin via <code>GET /api/auth/bootstrap</code> (uses ADMIN_USER/ADMIN_PASS envs).
       </p>
     </div>
   );

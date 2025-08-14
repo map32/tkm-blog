@@ -23,9 +23,20 @@ app.include_router(posts.router)
 app.include_router(plants.router)
 
 # Serve built SPA (frontend) if present
-static_dir = os.path.join(os.path.dirname(__file__), "..", "static")
+frontend_dir = os.path.join(os.path.dirname(__file__), "..", "static")
+static_dir = os.path.join(os.path.dirname(__file__), "static", "plants")
+img_dir = os.path.join(os.path.dirname(__file__), "static","plants","1_0.jpg")
+
 if os.path.exists(static_dir):
-    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
+    print(static_dir + ' found')
+    if os.path.exists(img_dir):
+        print(img_dir + ' found')
+    else:
+        print(img_dir + ' not found')
+    app.mount("/plants", StaticFiles(directory=static_dir), name="backend_static")
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
+else:
+    print('not found')
 
 # Health check
 @app.get("/api/health")

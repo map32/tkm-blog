@@ -1,10 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from sqlmodel import select
+from sqlmodel import select, Session
 from .models import User
 from .database import get_session
 from .utils import hash_password, verify_password, create_token, decode_token
-from sqlmodel import Session
 import os
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
@@ -38,7 +37,6 @@ def get_current_user(token: str = Depends(oauth2_scheme), session: Session = Dep
         raise HTTPException(401, "User not found")
     return user
 
-# optional: bootstrap admin account from env on first call
 @router.get("/bootstrap")
 def bootstrap(session: Session = Depends(get_session)):
     u = os.getenv("ADMIN_USER")
