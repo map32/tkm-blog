@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { BlogContext } from "../App";
 
 const api = (path) => (window.location.origin.includes(":8080") ? "http://localhost:8080" : "") + path;
 
 export default function BlogEditor({ token }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const {posts, setPosts} = useContext(BlogContext);
 
   async function post() {
     if (!token) { alert("Login first (use /api/auth/bootstrap or env vars)"); return; }
@@ -13,7 +15,7 @@ export default function BlogEditor({ token }) {
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
       body: JSON.stringify({ title, body_markdown: body })
     });
-    if (res.ok) { setTitle(""); setBody(""); alert("Posted!"); }
+    if (res.ok) { setTitle(""); setBody(""); const d = await res.json(); setPosts([...posts, d]); alert("Posted!"); }
     else alert("Failed");
   }
 

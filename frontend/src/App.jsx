@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import Tabs from "./components/Tabs.jsx";
 import PlantSearch from "./components/PlantSearch.jsx";
 import PlantDetail from "./components/PlantDetail.jsx";
@@ -7,6 +7,15 @@ import BlogEditor from "./components/BlogEditor.jsx";
 import KtmSection from "./components/KtmSection.jsx";
 
 const api = (path) => (window.location.origin.includes(":8080") ? "http://localhost:8080" : "") + path;
+
+export const BlogContext = createContext({posts: [], setPosts: () => {}});
+
+export const BlogProvider = ({children}) => {
+  const [posts, setPosts] = useState([])
+  return <BlogContext.Provider value={{posts, setPosts}}>
+    {children}
+  </BlogContext.Provider>
+}
 
 export default function App() {
   const [selected, setSelected] = useState(null);
@@ -70,14 +79,16 @@ export default function App() {
         )}
 
         {activeTab === "blog" && (
-          <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem"}}>
-            <div className="card">
-              <BlogEditor token={token} />
+          <BlogProvider>
+            <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem"}}>
+              <div className="card">
+                <BlogEditor token={token} />
+              </div>
+              <div className="card">
+                <BlogList />
+              </div>
             </div>
-            <div className="card">
-              <BlogList />
-            </div>
-          </div>
+          </BlogProvider>
         )}
 
         {activeTab === "ktm" && (
