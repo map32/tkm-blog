@@ -26,7 +26,9 @@ app.include_router(plants.router)
 frontend_dir = os.path.join(os.path.dirname(__file__), "..", "static")
 static_dir = os.path.join(os.path.dirname(__file__), "static", "plants")
 img_dir = os.path.join(os.path.dirname(__file__), "static","plants","1_0.jpg")
-
+print(frontend_dir)
+print(static_dir)
+print(img_dir)
 if os.path.exists(static_dir):
     print(static_dir + ' found')
     if os.path.exists(img_dir):
