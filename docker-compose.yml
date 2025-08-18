@@ -11,4 +11,4 @@ services:
     environment:
       - JWT_SECRET=iAWQa9RNJ2nhQgMfvLVls7eJI2oq8TR2
       - ADMIN_USER=admin
-      - ADMIN_PASS=adminpassword
+      - ADMIN_PASS=adminpass
