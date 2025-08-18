@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Exit if any command fails
+echo "🚀 Exit if any command fails"
 set -e
 
 # Run the initialization script.
