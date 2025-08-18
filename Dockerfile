@@ -17,7 +17,7 @@ COPY backend/app ./app
 # copy data and built frontend
 COPY data /app/data
 COPY --from=frontend /frontend/dist /app/static
-COPY ./entrypoint.sh .
+COPY ./entry_render.sh .
 
 EXPOSE 8000
 
