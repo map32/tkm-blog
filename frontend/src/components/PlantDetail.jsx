@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import PlantCard from "./PlantCard";
+import ImageCarousel from "./ImageCarousel";
 
 const api = (path) => (window.location.origin.includes(":8080") ? "http://localhost:8080" : "") + path;
 
@@ -9,23 +10,23 @@ export default function PlantDetail({ id, plant }) {
     if (!id) { setData(null); return; }
     if (plant) { setData(plant); return; }
     fetch(api(`/api/plants/${id}`)).then(r=>r.json()).then(setData);
+
   }, [id]);
+
+  const images = useMemo(() => data && Array.isArray(data.img_links) && data.img_links.length>0 ? data.img_links.map((val, ind) => ({src: `/plants/${plant.id}_${ind}.jpg`, alt: plant.name_en+plant.id})) : [],[data])
 
   if (!data) return <div><h2 style={{marginTop:0}}>Details</h2><p>Select a plant to see details.</p></div>;
 
   const Row = ({label, value}) => value ? (<p><strong>{label}:</strong> {value}</p>) : null;
-
   return (
     <div>
       <h2 style={{marginTop:0}}>{data.name_en ?? data.name_latin} <span className="badge">{data.name_ko}</span></h2>
       {/*data.name_latin && <div style={{opacity:.8}}>{data.name_latin}</div>*/}
-      {Array.isArray(data.img_links) && data.img_links.length>0 && (
-        <div style={{display:"flex", gap:".5rem", flexWrap:"wrap", margin:".5rem 0"}}>
-          {data.img_links.slice(0,4).map((src,i) => (
-            <PlantCard plant={plant} index={i} />
-          ))}
-        </div>
-      )}
+      {
+        Array.isArray(data.img_links) && data.img_links.length>0 && (
+          <ImageCarousel images={images} />
+        )
+      }
       <Row label="Family" value={data.family} />
       <Row label="Part" value={data.medicinal_part} />
       <Row label="Taste" value={data.taste} />

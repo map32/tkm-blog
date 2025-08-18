@@ -7,7 +7,12 @@ services:
     volumes:
       - ./data:/app/data:ro
       - ./images:/app/app/static/plants
+      - db-data:/app/data
+
     environment:
-      - JWT_SECRET=change-me-please
+      - JWT_SECRET=iAWQa9RNJ2nhQgMfvLVls7eJI2oq8TR2
       - ADMIN_USER=admin
-      - ADMIN_PASS=admin123
+      - ADMIN_PASS=adminpassword
+
+volumes:
+  db-data:

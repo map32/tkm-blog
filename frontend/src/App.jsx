@@ -5,6 +5,7 @@ import PlantDetail from "./components/PlantDetail.jsx";
 import BlogList from "./components/BlogList.jsx";
 import BlogEditor from "./components/BlogEditor.jsx";
 import KtmSection from "./components/KtmSection.jsx";
+import About from './components/About.jsx'
 
 const api = (path) => (window.location.origin.includes(":8080") ? "http://localhost:8080" : "") + path;
 
@@ -41,7 +42,8 @@ export default function App() {
   const tabs = [
     { key: "plants", label: "Plant Search" },
     { key: "blog", label: "Blog Editor" },
-    { key: "ktm", label: "KTM Pages" }
+    { key: "ktm", label: "What is KTM?" },
+    { key: "about", label: "About" }
   ];
 
   return (
@@ -96,6 +98,13 @@ export default function App() {
             <KtmSection />
           </div>
         )}
+
+        {
+          activeTab === "about" && (
+            <About />
+          )
+        }
+
       </div>
     </>
   );

@@ -9,9 +9,8 @@ export default function BlogList() {
   async function load() {
     const r = await fetch(api("/api/posts"));
     const d = await r.json();
-    setPosts(d);
   }
-  useEffect(()=>{ load(); },[posts]);
+  useEffect(()=>{ load(); },[]);
   return (
     <div>
       <h2 style={{marginTop:0}}>Recent Posts</h2>

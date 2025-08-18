@@ -17,6 +17,10 @@ COPY backend/app ./app
 # copy data and built frontend
 COPY data /app/data
 COPY --from=frontend /frontend/dist /app/static
-RUN python -m app.scripts.import_data
+COPY ./entrypoint.sh .
+
 EXPOSE 8000
+
+ENTRYPOINT ["./entrypoint.sh"]
+
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
