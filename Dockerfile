@@ -17,7 +17,6 @@ COPY backend/app ./app
 # copy data and built frontend
 COPY data /app/data
 COPY --from=frontend /frontend/dist /app/static
-RUN ls /frontend/dist
 RUN ls /app/static
 COPY ./entry_render.sh .
 RUN chmod +x ./entry_render.sh
