@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8000"
     volumes:
-      - ./data:/app/data:ro
+      - ./data:/app/data
       - ./images:/app/app/static/plants
 
     environment:

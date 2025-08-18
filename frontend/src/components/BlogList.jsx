@@ -9,6 +9,7 @@ export default function BlogList() {
   async function load() {
     const r = await fetch(api("/api/posts"));
     const d = await r.json();
+    setPosts(d);
   }
   useEffect(()=>{ load(); },[]);
   return (
