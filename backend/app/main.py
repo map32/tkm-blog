@@ -23,9 +23,9 @@ app.include_router(posts.router)
 app.include_router(plants.router)
 
 # Serve built SPA (frontend) if present
-frontend_dir = os.path.join(os.path.dirname(__file__), "..", "static")
-static_dir = os.path.join(os.path.dirname(__file__), "static", "plants")
-img_dir = os.path.join(os.path.dirname(__file__), "static","plants","1_0.jpg")
+frontend_dir = '/app/static'
+static_dir = '/app/app/static/plants'
+img_dir = '/app/app/static/plants/1_0.jpg'
 print(frontend_dir)
 print(static_dir)
 print(img_dir)

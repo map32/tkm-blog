@@ -18,6 +18,8 @@ COPY backend/app ./app
 COPY data /app/data
 COPY --from=frontend /frontend/dist /app/static
 RUN ls /app/static
+RUN mkdir /app/app/static
+RUN mkdir /app/app/static/plants
 COPY ./entry_render.sh .
 RUN chmod +x ./entry_render.sh
 
