@@ -26,3 +26,5 @@ RUN chmod +x ./entry_render.sh
 EXPOSE 10000
 
 ENTRYPOINT ["./entry_render.sh"]
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000"]

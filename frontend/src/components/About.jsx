@@ -1,4 +1,5 @@
 import React from 'react';
+import aboutData from '../../ktmAbout'
 
 // --- CSS Styles ---
 // All styles are defined here, removing the dependency on Tailwind CSS.
@@ -227,36 +228,19 @@ const SkillBadge = ({ skill }) => (
 );
 
 const StyleSheet = () => <style>{styles}</style>;
+const studentDeveloper = aboutData;
+
 
 // --- AboutPage Component ---
 const AboutPage = () => {
-  const studentDeveloper = {
-    name: "Jina Kim",
-    title: "Student Developer & Aspiring Physician",
-    profilePicture: "https://placehold.co/400x400/a7f3d0/333333?text=Jina",
-    bio: [
-      "Hello! My name is Jina, and I am a high school student with a deep passion for the intersection of medicine and technology. My fascination with Korean Traditional Medicine (한의학) began with my family's stories and a desire to understand the holistic principles behind it.",
-      "I created this digital formulary as a way to bridge this ancient knowledge with modern accessibility. My goal was to build a clean, intuitive, and informative resource for fellow students and enthusiasts. This project involved extensive research into traditional texts and modern databases, followed by the challenge of designing and coding a user-friendly web application from the ground up.",
-      "Through this project, I have not only deepened my understanding of Korean Traditional Medicine but also solidified my programming skills. I hope to continue using technology to create meaningful tools in the healthcare space as I pursue my goal of becoming a physician."
-    ],
-    skills: [
-      "React", "JavaScript (ES6+)", "HTML & CSS", "Firebase", "UI/UX Design",
-      "Digital Research", "Korean Traditional Medicine Studies"
-    ],
-    socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      email: "mailto:student.email@example.com",
-    }
-  };
 
   return (
     <div className="card">
-        <div className="about-card">
+        {studentDeveloper.map((studentDeveloper) => (<div className="about-card">
           <div className="profile-header">
             <div className="profile-picture-wrapper">
               <img
-                src={studentDeveloper.profilePicture}
+                src={studentDeveloper.pic}
                 alt={`Profile picture of ${studentDeveloper.name}`}
                 className="profile-picture"
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x400/cccccc/ffffff?text=Image+Error'; }}
@@ -278,15 +262,15 @@ const AboutPage = () => {
           </div>
 
           <div className="content-section">
-            <h2>Skills & Knowledge</h2>
+            <h2>Interests</h2>
             <div className="skills-container">
-              {studentDeveloper.skills.map((skill, index) => (
+              {studentDeveloper.interests.map((skill, index) => (
                 <SkillBadge key={index} skill={skill} />
               ))}
             </div>
           </div>
 
-          <div className="socials-section">
+          {/*<div className="socials-section">
             <h2>Contact & Portfolio</h2>
             <div className="social-links">
               <a href={studentDeveloper.socials.github} target="_blank" rel="noopener noreferrer">
@@ -302,8 +286,8 @@ const AboutPage = () => {
                 <span className="sr-only">Email</span>
               </a>
             </div>
-          </div>
-        </div>
+          </div>*/}
+        </div>))}
     </div>
   );
 };
