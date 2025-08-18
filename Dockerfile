@@ -18,6 +18,9 @@ COPY backend/app ./app
 COPY data /app/data
 COPY --from=frontend /frontend/dist /app/static
 COPY ./entrypoint.sh .
+ENV JWT_SECRET=iAWQa9RNJ2nhQgMfvLVls7eJI2oq8TR2
+ENV ADMIN_USER=admin
+ENV ADMIN_PASS=adminpassword
 
 EXPOSE 8000
 
