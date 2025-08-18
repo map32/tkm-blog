@@ -11,4 +11,4 @@ echo "✅ Initialization check complete."
 # Execute the command passed to the script (the Dockerfile's CMD)
 # The 'exec' command replaces the shell process with the new process,
 # which is important for proper signal handling (like Ctrl+C).
-exec uvicorn app.main:app --host 0.0.0.0 --port 8000
+exec uvicorn app.main:app --host 0.0.0.0 --port 10000
