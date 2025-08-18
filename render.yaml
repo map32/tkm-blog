@@ -30,14 +30,3 @@ services:
         value: admin
       - key: ADMIN_PASS
         value: adminpassword
-
-    # --- Persistent Disks ---
-    # This section replaces the 'volumes' from your docker-compose file.
-    # It creates persistent storage that survives deploys and restarts.
-    disk:
-      - name: data
-        mountPath: /app/data
-        sizeGB: 1 # You can adjust the size as needed
-      - name: images
-        mountPath: /app/app/static/plants
-        sizeGB: 1 # You can adjust the size as needed
