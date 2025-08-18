@@ -17,9 +17,10 @@ COPY backend/app ./app
 # copy data and built frontend
 COPY data /app/data
 COPY --from=frontend /frontend/dist /app/static
-COPY ./entry_render.sh .
-RUN chmod +x ./entry_render.sh
+COPY ./entrypoint.sh .
 
 EXPOSE 8000
 
-ENTRYPOINT ["./entry_render.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
