@@ -1,3 +1,4 @@
+import React from 'react';
 import aboutData from '../../ktmAbout'
 
 // --- CSS Styles ---
@@ -227,14 +228,15 @@ const SkillBadge = ({ skill }) => (
 );
 
 const StyleSheet = () => <style>{styles}</style>;
+const studentDeveloper = aboutData;
+
 
 // --- AboutPage Component ---
 const AboutPage = () => {
-  const studentDeveloper = aboutData[0];
 
   return (
     <div className="card">
-        <div className="about-card">
+        {studentDeveloper.map((studentDeveloper) => (<div className="about-card">
           <div className="profile-header">
             <div className="profile-picture-wrapper">
               <img
@@ -285,7 +287,7 @@ const AboutPage = () => {
               </a>
             </div>
           </div>*/}
-        </div>
+        </div>))}
     </div>
   );
 };
