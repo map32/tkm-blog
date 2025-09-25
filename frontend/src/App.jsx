@@ -22,7 +22,9 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [auth, setAuth] = useState({ username: "", password: "" });
+  const [id, setId] = useState(null);
   const [activeTab, setActiveTab] = useState("plants");
+  const [postToEdit, setPostToEdit] = useState(null);
 
   const login = async (e) => {
     e.preventDefault();
@@ -33,7 +35,9 @@ export default function App() {
     if (res.ok) {
       const data = await res.json();
       localStorage.setItem("token", data.access_token);
+      localStorage.setItem("id", data.id);
       setToken(data.access_token);
+      setId(data.id);
     } else {
       alert("Login failed");
     }
@@ -54,7 +58,7 @@ export default function App() {
           {token ? (
             <div style={{display:"flex", gap:"0.5rem", alignItems:"center"}}>
               <span className="badge">Logged in</span>
-              <button onClick={()=>{localStorage.removeItem("token"); setToken("");}}>Logout</button>
+              <button onClick={()=>{localStorage.removeItem("token"); localStorage.removeItem("id"); setToken(""); setId(null)}}>Logout</button>
             </div>
           ) : (
             <form onSubmit={login} style={{display:"flex", gap:"0.5rem"}}>
@@ -84,10 +88,10 @@ export default function App() {
           <BlogProvider>
             <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem"}}>
               <div className="card">
-                <BlogEditor token={token} />
+                <BlogEditor token={token} postToEdit={postToEdit} />
               </div>
               <div className="card">
-                <BlogList />
+                <BlogList id={id} setPostToEdit={setPostToEdit} />
               </div>
             </div>
           </BlogProvider>

@@ -3,9 +3,11 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlmodel import select, Session
 from .models import User
 from .database import get_session
+from dotenv import load_dotenv
 from .utils import hash_password, verify_password, create_token, decode_token
 import os
 
+load_dotenv()
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
@@ -24,7 +26,7 @@ def login(form: OAuth2PasswordRequestForm = Depends(), session: Session = Depend
     if not user or not verify_password(form.password, user.password_hash):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
     token = create_token(user.username)
-    return {"access_token": token, "token_type": "bearer"}
+    return {"access_token": token, "token_type": "bearer", "id": user.id}
 
 def get_current_user(token: str = Depends(oauth2_scheme), session: Session = Depends(get_session)) -> User:
     try:
