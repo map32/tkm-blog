@@ -22,7 +22,7 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [auth, setAuth] = useState({ username: "", password: "" });
-  const [id, setId] = useState(null);
+  const [id, setId] = useState(localStorage.getItem("id") || null);
   const [activeTab, setActiveTab] = useState("plants");
   const [postToEdit, setPostToEdit] = useState(null);
 
@@ -88,7 +88,7 @@ export default function App() {
           <BlogProvider>
             <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem"}}>
               <div className="card">
-                <BlogEditor token={token} postToEdit={postToEdit} />
+                <BlogEditor token={token} postToEdit={postToEdit} setPostToEdit={setPostToEdit} />
               </div>
               <div className="card">
                 <BlogList id={id} setPostToEdit={setPostToEdit} />

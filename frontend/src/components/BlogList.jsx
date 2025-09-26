@@ -19,7 +19,7 @@ export default function BlogList({id, setPostToEdit}) {
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
     });
     if (res.ok) { 
-      setTitle(""); setBody("");
+      setPosts(currentPosts => currentPosts.filter(post => post.id !== id));
       alert("Deleted!");
     }
     else alert("Failed");
@@ -36,10 +36,10 @@ export default function BlogList({id, setPostToEdit}) {
               id && id === p.id ? 
               <div className={{display: 'flex', gap:4, alignItems: 'center'}}>
                 <button className='icon' onClick={() => setPostToEdit(p)}>
-                  <img src='/edit.svg' width='1rem' height='1rem'/>
+                  <img src='/edit.svg' width='20px' height='20px'/>
                 </button>
                 <button className='icon' onClick={() => del(p.id)}>
-                  <img src='/button.svg'  width='1rem' height='1rem'/>
+                  <img src='/delete.svg'  width='20px' height='20px'/>
                 </button>
               </div> : null
             }

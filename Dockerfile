@@ -21,9 +21,9 @@ COPY --from=frontend /frontend/dist /app/static
 RUN ls /app/static
 RUN mkdir /app/app/static
 RUN mkdir /app/app/static/plants
+COPY images /app/app/static/plants
 COPY ./entry_render.sh .
 RUN chmod +x ./entry_render.sh
-COPY images /app/app/static/plants
 
 EXPOSE 10000
 

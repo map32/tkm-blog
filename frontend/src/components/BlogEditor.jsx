@@ -31,8 +31,9 @@ export default function BlogEditor({ token, postToEdit, setPostToEdit }) {
     if (res.ok) { 
       setTitle(""); setBody("");
       const d = await res.json();
-      const i = posts.findIndex(item => item.id === i);
-      setPosts(posts.toSpliced(i, 1, d));
+      const i = posts.findIndex(item => item.id === d.id);
+      setPosts(prev => prev.toSpliced(i, 1, d));
+      setPostToEdit(null);
       alert("Edited!");
     }
     else alert("Failed");
