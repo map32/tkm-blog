@@ -44,6 +44,7 @@ def bootstrap(session: Session = Depends(get_session)):
     u = os.getenv("ADMIN_USER")
     p = os.getenv("ADMIN_PASS")
     if u and p and not session.exec(select(User).where(User.username==u)).first():
+        print(u, p)
         session.add(User(username=u, password_hash=hash_password(p)))
         session.commit()
         return {"created": True}
