@@ -33,7 +33,7 @@ export default function BlogList({id, setPostToEdit}) {
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <h3 style={{marginTop:0}}>{p.title}</h3>
             {
-              id && id === p.id ? 
+              id && id === p.author_id ? 
               <div className={{display: 'flex', gap:4, alignItems: 'center'}}>
                 <button className='icon' onClick={() => setPostToEdit(p)}>
                   <img src='/edit.svg' width='20px' height='20px'/>

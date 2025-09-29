@@ -53,8 +53,11 @@ export default function App() {
   return (
     <>
       <div className="header">
-        <div className="container" style={{display:"flex", gap:"1rem", alignItems:"center", justifyContent:"space-between"}}>
-          <h1 style={{margin:0,fontSize:"1.1rem"}}>Korean Traditional Medicine — Materia Medica & Blog</h1>
+        <div className="container" style={{display:"flex", padding: 0, gap:"1rem", alignItems:"center", justifyContent:"space-between"}}>
+          <div style={{display:"flex", gap:"1rem", alignItems:"center"}}>
+            <img src="/logo.png" width="96px" height="96px" alt="logo" />
+            <h1 style={{margin:0,fontSize:"1.1rem"}}>Korean Traditional Medicine — Materia Medica & Blog</h1>
+          </div>
           {token ? (
             <div style={{display:"flex", gap:"0.5rem", alignItems:"center"}}>
               <span className="badge">Logged in</span>
@@ -72,7 +75,7 @@ export default function App() {
 
       <div className="container" style={{display:"grid", gap:"1rem"}}>
         <Tabs tabs={tabs} active={activeTab} onChange={setActiveTab} />
-
+        <img src='/banner.png' style={{width:"100%", borderRadius:8}} />
         {activeTab === "plants" && (
           <div style={{display:"grid", gridTemplateColumns:"2fr 1fr", gap:"1rem"}}>
             <div className="card">
