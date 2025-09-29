@@ -45,7 +45,7 @@ export default function App() {
 
   const tabs = [
     { key: "plants", label: "Plant Search" },
-    { key: "blog", label: "Blog Editor" },
+    { key: "blog", label: "Article" },
     { key: "ktm", label: "What is KTM?" },
     { key: "about", label: "About" }
   ];
