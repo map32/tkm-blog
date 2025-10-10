@@ -1,6 +1,6 @@
 const about = [
     {
-        name: "Hana Van",
+        name: "Hana Van Rossum",
         title: "Aspiring Physician in Oncology",
         pic: '/profile.jpg',
         bio: [
