@@ -238,14 +238,6 @@ const AboutPage = () => {
     <div className="card">
         {studentDeveloper.map((studentDeveloper) => (<div className="about-card">
           <div className="profile-header">
-            <div className="profile-picture-wrapper">
-              <img
-                src={studentDeveloper.pic}
-                alt={`Profile picture of ${studentDeveloper.name}`}
-                className="profile-picture"
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x400/cccccc/ffffff?text=Image+Error'; }}
-              />
-            </div>
             <div className="profile-info">
               <h1>{studentDeveloper.name}</h1>
               <p>{studentDeveloper.title}</p>
@@ -253,7 +245,7 @@ const AboutPage = () => {
           </div>
 
           <div className="content-section">
-            <h2>My Project Journey</h2>
+            <h2>Welcome</h2>
             <div className="bio-text">
               {studentDeveloper.bio.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
@@ -262,12 +254,30 @@ const AboutPage = () => {
           </div>
 
           <div className="content-section">
-            <h2>Interests</h2>
-            <div className="skills-container">
-              {studentDeveloper.interests.map((skill, index) => (
-                <SkillBadge key={index} skill={skill} />
+            <h2>Internship</h2>
+            <ul>
+              {studentDeveloper.internships.map((internship, index) => (
+                <li key={index}>{internship}</li>
               ))}
-            </div>
+            </ul>
+          </div>
+
+          <div className="content-section">
+            <h2>Extracurriculars</h2>
+            <ul>
+              {studentDeveloper.extracurriculars.map((extracurricular, index) => (
+                <li key={index}>{extracurricular}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="content-section">
+            <h2>Awards & Distinctions</h2>
+            <ul>
+              {studentDeveloper.competitions.map((competition, index) => (
+                <li key={index}>{competition}</li>
+              ))}
+            </ul>
           </div>
 
           {/*<div className="socials-section">
